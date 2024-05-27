@@ -3,6 +3,8 @@ import LambdaspireAbstractions
 
 public class PrintLogger : Logger {
     
+    public init() { }
+    
     public func info(_ message: String) {
         info(message, Empty())
     }
