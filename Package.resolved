@@ -1,5 +1,5 @@
 {
-  "originHash" : "4e7b9aaa2c952d0ad2db8fa8c456fb5a11e599b2caa19a06c0de54a7439f3643",
+  "originHash" : "fe7bb9018e58f89a91ed2c1c1ebc9e14ffe00e0a669833efb7eb4296423ef3f0",
   "pins" : [
     {
       "identity" : "lambdaspire-swift-abstractions",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/Lambdaspire/Lambdaspire-Swift-Abstractions",
       "state" : {
         "revision" : "304fb68a55c3442669334ba7785c217f57d109b7",
-        "version" : "0.0.1"
+        "version" : "1.0.0"
       }
     }
   ],
