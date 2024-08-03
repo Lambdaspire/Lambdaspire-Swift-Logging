@@ -1,13 +1,13 @@
 {
-  "originHash" : "fe7bb9018e58f89a91ed2c1c1ebc9e14ffe00e0a669833efb7eb4296423ef3f0",
+  "originHash" : "6f45a75460c849067f83e3294036705a0461819d14d115c0252222b90de7e887",
   "pins" : [
     {
       "identity" : "lambdaspire-swift-abstractions",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Lambdaspire/Lambdaspire-Swift-Abstractions",
       "state" : {
-        "revision" : "304fb68a55c3442669334ba7785c217f57d109b7",
-        "version" : "1.0.0"
+        "revision" : "b5d8bf41df8ea16866f6a5e9a015cca259b87fc9",
+        "version" : "2.0.0"
       }
     }
   ],
