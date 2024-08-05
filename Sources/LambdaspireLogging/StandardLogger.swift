@@ -54,31 +54,43 @@ public class StandardLogger : Logger {
     
     func log<A>(level: LogLevel, format: String, error: (any Error)? = nil, args: A = EmptyArgs()) {
         
-        if let args = args as? Dictionary<AnyHashable, Any> {
-            // TODO: Not quite.
-            print(args.keys.map { "\($0)" } .joined(separator: ", "))
-            
-        } else {
-            let m = Mirror(reflecting: args)
-            let tokens = m.children.flatMap { unwrap($0.value, $0.label!) }
-            let formatted = tokens
-                .reduce(format) { acc, next in
-                    acc.replacing(Regex {
-                        "{"
-                        next.keyPath
-                        "}"
-                    }) { m in
-                        next.value
-                    }
+        if level < minimumLogLevel {
+            return
+        }
+        
+        let formatted = tokenise(args)
+            .reduce(format) { acc, next in
+                acc.replacing(Regex {
+                    "{"
+                    next.keyPath
+                    "}"
+                }) { m in
+                    next.value
                 }
-            
-            destinations.forEach { d in
-                d.log(level: level, message: formatted, error: error, args: args)
             }
+        
+        destinations.forEach { d in
+            d.log(level: level, message: formatted, error: error, args: args)
         }
     }
+    
+    private func tokenise<A>(_ args: A) -> [(keyPath: String, value: String)] {
+        
+        if let d = args as? Dictionary<AnyHashable, Any> {
+            return d
+                .keys
+                .map {
+                    (keyPath: "\($0)", value: "\(d[$0]!)")
+                }
+        }
+        
+        return Mirror(reflecting: args)
+            .children
+            .filter { $0.label != nil }
+            .flatMap { unwrap($0.value, $0.label!) }
+    }
 
-    func unwrap(_ value: Any, _ keyPath: String = "") -> [(keyPath: String, value: String)] {
+    private func unwrap(_ value: Any, _ keyPath: String = "") -> [(keyPath: String, value: String)] {
 
         let m = Mirror(reflecting: value)
 

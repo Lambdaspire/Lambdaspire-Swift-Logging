@@ -5,7 +5,7 @@ public class PrintLogDestination : LogDestination {
         print("""
         
         LOG
-        - LEVEL: \(level.rawValue)
+        - LEVEL: \(level)
         - MESSAGE: \(message)
         - ERROR: \(error == nil ? "None" : "\(error!)")
         - ARGS: \(args)

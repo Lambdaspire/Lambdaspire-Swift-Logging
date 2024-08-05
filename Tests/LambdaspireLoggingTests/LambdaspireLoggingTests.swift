@@ -34,6 +34,14 @@ final class LambdaspireLoggingTests: XCTestCase {
             A: (b: (c: "✅ A.b.c", unused: ""), unused: ""),
             B: (c: (d: "✅ B.c.d", unused: ""), unused: "")
         ))
+        
+        logger.info("✅ Dictionary test {A} {B} {1} {2} {Complex}", [
+            "A": "Aye",
+            "B": "Bee",
+            1: "One",
+            2: 222,
+            "Complex": TestArgs(a: "Not really supported", b: "Sorry")
+        ])
     }
 }
 
